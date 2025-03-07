@@ -6,6 +6,10 @@ from durabletask import client, task
 from durabletask.azuremanaged.client import DurableTaskSchedulerClient
 from durabletask.azuremanaged.worker import DurableTaskSchedulerWorker
 
+import pytest
+
+
+pytestmark = pytest.mark.dts
 
 def hello(ctx: task.ActivityContext, name: str) -> str:
     """Activity function that returns a greeting"""
