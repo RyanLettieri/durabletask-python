@@ -55,14 +55,14 @@ credential = DefaultAzureCredential()
 
 # configure and start the worker
 with DurableTaskSchedulerWorker(host_address=endpoint, secure_channel=True,
-                                taskhub=taskhub_name, token_credential=credential) as w:
+                                taskhub=taskhub_name, token_credential=None) as w:
     w.add_orchestrator(sequence)
     w.add_activity(hello)
     w.start()
 
     # Construct the client and run the orchestrations
     c = DurableTaskSchedulerClient(host_address=endpoint, secure_channel=True,
-                                   taskhub=taskhub_name, token_credential=credential)
+                                   taskhub=taskhub_name, token_credential=None)
     instance_id = c.schedule_new_orchestration(sequence)
     state = c.wait_for_orchestration_completion(instance_id, timeout=60)
     if state and state.runtime_status == client.OrchestrationStatus.COMPLETED:
