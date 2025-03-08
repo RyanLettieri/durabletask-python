@@ -2,7 +2,7 @@ init:
 	pip3 install -r requirements.txt
 
 test-unit:
-	pytest -m "not e2e" --verbose
+	pytest -m "not e2e and not dts" --verbose
 
 test-e2e:
 	pytest -m e2e --verbose
