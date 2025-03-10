@@ -1,6 +1,8 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
+from typing import Optional
+
 from azure.core.credentials import TokenCredential
 
 from durabletask.azuremanaged.internal.durabletask_grpc_interceptor import \
@@ -13,7 +15,7 @@ class DurableTaskSchedulerWorker(TaskHubGrpcWorker):
     def __init__(self, *,
                  host_address: str,
                  taskhub: str,
-                 token_credential: TokenCredential,
+                 token_credential: Optional[TokenCredential],
                  secure_channel: bool = True):
 
         if not taskhub:

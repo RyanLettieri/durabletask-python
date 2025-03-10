@@ -34,7 +34,7 @@ jobs:
         flake8 . --count --show-source --statistics --exit-zero
     - name: Pytest unit tests
       run: |
-        pytest -m "not e2e" --verbose
+        pytest --ignore=test/dts -m "not e2e and not dts" --verbose
 
     # Sidecar for running e2e tests requires Go SDK
     - name: Install Go SDK
@@ -47,4 +47,4 @@ jobs:
       run: |
         go install github.com/microsoft/durabletask-go@main
         durabletask-go --port 4001 &
-        pytest -m "e2e" --verbose
+        pytest --ignore=test/dts -m "e2e" --verbose
