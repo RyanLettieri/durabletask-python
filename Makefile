@@ -2,10 +2,10 @@ init:
 	pip3 install -r requirements.txt
 
 test-unit:
-	pytest -m --ignore=test/dts "not e2e" --verbose
+	pytest --ignore=test/dts -m "not e2e" --verbose
 
 test-e2e:
-	pytest -m --ignore=test/dts e2e --verbose
+	pytest --ignore=test/dts -m e2e --verbose
 
 install:
 	python3 -m pip install .
